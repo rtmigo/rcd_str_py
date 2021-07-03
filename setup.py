@@ -30,7 +30,6 @@ setup(
     packages=find_packages(exclude=['tests']), #include=['rcd_wikipedia/*']),
 
     install_requires=[""],
-
     description="Reusable code handling strings",
 
     long_description=readme,
