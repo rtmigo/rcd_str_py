@@ -1,40 +1,7 @@
-from .other import *
-from ._category_patterns import RegexCat
-from ._camel_case import CamelCase
+# SPDX-FileCopyrightText: (c) 2012-2021 Artёm IG <github.com/rtmigo>
+# SPDX-License-Identifier: MIT
 
-# import re
-# import unittest
-# from pathlib import Path
-# from typing import List, Union, Optional
-#
-#
-#
-#
-#
-# # return CamelCase.__getRegex().search(txt)
-#
-#
-# # def firstWordCamelCase
-#
-#
-# #######
-#
-# import unicodedata
-#
-# #regexLu_data = None
-#
-#
-# #   return regexLu_data
-#
-#
-# #regexLl_data = None
-#
-#
-# #    return regexLl_data
-#
-#
-# # TestCamelCase().testFirst()
-# # exit()
-#
-# if __name__ == "__main__":
-#     unittest.main()
+
+from ._camel_case import CamelCase
+from ._category_patterns import RegexCat
+from ._other import *  # todo
