@@ -45,18 +45,6 @@ def isASCII(s):
     return all(ord(c) < 128 for c in s)
 
 
-def keepalnum(txt):
-    import re
-    # http://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
-    pattern = re.compile('[\W_]+')
-    return pattern.sub('', txt)
-
-
-class TestKeepAlnum(unittest.TestCase):
-    def test(self):
-        self.assertEqual(
-            keepalnum("  Мир! Дружба! Жвачка! Олимпиада 1980! x86_64  "),
-            "МирДружбаЖвачкаОлимпиада1980x8664")
 
 
 def capitalizeAfterNonword(txt: str) -> str:
@@ -77,9 +65,6 @@ class TestCapita(unittest.TestCase):
 #   splitWan:       "some123text, and something" -> "some", "123", "text", "and", "something"
 #   alphanumerics:  "some123text, and something" -> "some123text", "and", "something"
 
-def splitWaN(text):
-    return alphanumerics(text, underscore=False, separateNumbers=True)
-
 
 #	if undercore:
 #		expr = r"[^\W\d]+|\d+"
@@ -88,39 +73,7 @@ def splitWaN(text):
 
 #	return re.findall(expr, text)
 
-def alphanumerics(text, underscore=False, separateNumbers=False):
-    # \w		буква, цифра или "_"
-    # \W		всё, кроме "\w". То есть, не буква, не цифра и не подчеркивание
-    # [^\W]		отрицание \W экваивалентно отрицанию отрицания \w, то есть эквивалентно \w
-    # [^\W_]	"\w", но не "_"
 
-    if separateNumbers:
-        if underscore:
-            return re.findall(r"[^\W\d]+|\d+", text)
-        else:
-            return re.findall(r"[^\W\d_]+|\d+", text)
-    else:
-        if underscore:
-            return re.findall(r"\w+", text)  # ?! не тестировано!
-        else:
-            return re.findall(r"[^\W_]+", text)  # ?! не тестировано!
-
-
-def alphawords(text, underscore=False):
-    if underscore:
-        return re.findall(r"[^\W_]+", text)
-    else:
-        return re.findall(r"[^\W\d_]+", text)
-
-
-class Test519(unittest.TestCase):
-    def test_alphawords(self):
-        assert alphawords("number 1 and number 2 are numbers") \
-               == ['number', 'and', 'number', 'are', 'numbers']
-        assert alphawords(
-            "Here is undercore_glued_ident and '20' in quotes ") \
-               == ['Here', 'is', 'undercore', 'glued', 'ident', 'and', 'in',
-                   'quotes']
 
 
 def keepLettersDashesSpaces(txt: str) -> str:
@@ -172,12 +125,6 @@ class TestKeepLetters(unittest.TestCase):
 
 # test_alphas()
 # exit()
-
-
-def simpleWaN(text):
-    """для приблизительного сравнения строк. Удаляет пунктуацию, минимизирует
-    пробелы, переводит строку в верхний регистр."""
-    return " ".join(splitWaN(text.upper()))
 
 
 def minimizeSpaces(text, keepNewlines=False):
