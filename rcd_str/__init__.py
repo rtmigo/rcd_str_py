@@ -1,5 +1,6 @@
 from .other import *
 from ._category_patterns import RegexCat
+from ._camel_case import CamelCase
 
 # import re
 # import unittest
