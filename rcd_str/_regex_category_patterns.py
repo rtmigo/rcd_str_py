@@ -10,8 +10,8 @@ import warnings
 
 @functools.lru_cache()
 def regex_category_pattern(category: str) -> str:
-    return '[{}]'.format("".join([chr(i) for i in range(sys.maxunicode) if
-                                  unicodedata.category(chr(i)) == category]))
+    return '[{}]'.format("".join(chr(i) for i in range(sys.maxunicode) if
+                                  unicodedata.category(chr(i)) == category))
 
 
 class _RegexCatMeta(type):
