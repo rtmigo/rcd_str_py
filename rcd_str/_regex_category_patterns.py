@@ -3,15 +3,25 @@
 
 
 import functools
+import re
 import sys
 import unicodedata
 import warnings
+from typing import Iterable
+
+
+def _iter_by_cat(category: str) -> Iterable[str]:
+    for i in range(sys.maxunicode):
+        c = chr(i)
+        if unicodedata.category(c) == category:
+            yield c
 
 
 @functools.lru_cache()
 def regex_category_pattern(category: str) -> str:
-    return '[{}]'.format("".join(chr(i) for i in range(sys.maxunicode) if
-                                  unicodedata.category(chr(i)) == category))
+    chars = "".join(_iter_by_cat(category))
+    chars = re.escape(chars)
+    return f'[{chars}]'
 
 
 class _RegexCatMeta(type):

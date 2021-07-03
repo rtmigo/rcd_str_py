@@ -3,5 +3,5 @@
 
 
 from ._camel_case import CamelCase
-from ._regex_category_patterns import RegexCat
+from ._regex_category_patterns import RegexCat, regexLu, regexLl
 from ._other import *  # todo
