@@ -27,7 +27,7 @@ setup(
     author_email="ortemeo@gmail.com",
     url='https://github.com/rtmigo/rcd_str_py',
 
-    packages=find_packages(exclude=['tests']), #include=['rcd_wikipedia/*']),
+    packages=find_packages(exclude=['tests']),
 
     install_requires=[""],
     description="Reusable code handling strings",

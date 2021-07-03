@@ -1,6 +1,6 @@
 import unittest
 
-from rcd_str import CamelCase
+from rcd_str._camel_case import CamelCase
 
 
 class TestCamelCase(unittest.TestCase):
