@@ -4,4 +4,5 @@
 
 from ._camel_case import CamelCase
 from ._regex_category_patterns import RegexCat, regexLu, regexLl
+from ._sentence_case import sentence_case, sentenceCase
 from ._other import *  # todo

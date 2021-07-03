@@ -14,12 +14,12 @@ class CamelCase:
         # https://stackoverflow.com/questions/29916065/how-to-do-camelcase-split-in-python
         if CamelCase.__compiledRegex is None:
             CamelCase.__compiledRegex = re.compile(r'''
-				# Find words in a string. Order matters!
-				[A-Z]+(?=[A-Z][a-z]) |  # All upper case before a capitalized word
-				[A-Z]?[a-z]+ |  # Capitalized words / all lower case
-				[A-Z]+ |  # All upper case
-				\d+  # Numbers
-			''', re.VERBOSE | re.MULTILINE)
+                # Find words in a string. Order matters!
+                [A-Z]+(?=[A-Z][a-z]) | # upper case before a capitalized word
+                [A-Z]?[a-z]+ |  # Capitalized words / all lower case
+                [A-Z]+ |  # All upper case
+                \d+  # Numbers
+            ''', re.VERBOSE | re.MULTILINE)
         return CamelCase.__compiledRegex
 
     @staticmethod
