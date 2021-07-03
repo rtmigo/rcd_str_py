@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: (c) 2021 Artёm IG <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
 
-
 import re
 import unicodedata
 import unittest
@@ -114,35 +113,26 @@ def alphawords(text, underscore=False):
         return re.findall(r"[^\W\d_]+", text)
 
 
-import unittest
-
-
 class Test519(unittest.TestCase):
     def test_alphawords(self):
-        assert alphawords("number 1 and number 2 are numbers") == ['number',
-                                                                   'and',
-                                                                   'number',
-                                                                   'are',
-                                                                   'numbers']
+        assert alphawords("number 1 and number 2 are numbers") \
+               == ['number', 'and', 'number', 'are', 'numbers']
         assert alphawords(
-            "Here is undercore_glued_ident and '20' in quotes ") == ['Here',
-                                                                     'is',
-                                                                     'undercore',
-                                                                     'glued',
-                                                                     'ident',
-                                                                     'and',
-                                                                     'in',
-                                                                     'quotes']
+            "Here is undercore_glued_ident and '20' in quotes ") \
+               == ['Here', 'is', 'undercore', 'glued', 'ident', 'and', 'in',
+                   'quotes']
 
 
 def keepLettersDashesSpaces(txt: str) -> str:
-    # оставляет только символы, допустимые в имени города: пробелы, дефисы, буквы
+    # оставляет только символы, допустимые в имени города: пробелы,
+    # дефисы, буквы
 
     txt = txt.replace("_", " ")
     txt = " ".join(re.findall('''[-\w ]+''', txt))  # остались альфанумерикс
     txt = re.sub('''\d''', '', txt)  # удалили цифры
 
-    # любая смесь пробелов и дефисов превращается в одиночный дефис без пробелов рядом
+    # любая смесь пробелов и дефисов превращается в одиночный дефис
+    # без пробелов рядом
     txt = re.sub('''\s*-[\s-]*''', '-', txt)
     txt = txt.strip('-')  # никаких дефисов по краям
 
@@ -301,16 +291,3 @@ class TestSentenceCase(unittest.TestCase):
         self.assertEqual(sentenceCase("123"), "123")
         self.assertEqual(sentenceCase("1x"), "1X")
         self.assertEqual(sentenceCase("x"), "X")
-
-
-# TestSentenceCase().test_pershi()
-# exit()
-
-
-# TestWild().test_wildMatch()
-
-# print(wildFullMatch("zzz", "Текст. * Лала"))
-# exit()
-
-##############################################################################
-
