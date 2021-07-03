@@ -259,35 +259,3 @@ def wildFullMatch(text: str, wildcard: str) -> bool:
 # print(wildcard)
 
 
-def sentenceCase(s):
-    i = None
-
-    for i, c in enumerate(s):
-        if c.isalpha():
-            break
-
-    if i is None:
-        return s
-
-    return s[:i] + s[i].upper() + s[i + 1:]
-
-
-class TestSentenceCase(unittest.TestCase):
-
-    def test(self):
-        self.assertEqual(sentenceCase("иван"), "Иван")
-        self.assertEqual(sentenceCase("иван Евгеньевич Смирнов"),
-                         "Иван Евгеньевич Смирнов")
-        self.assertEqual(sentenceCase("красный богатырь"), "Красный богатырь")
-
-        self.assertEqual("«шербурские зонтики»".capitalize(),
-                         "«шербурские зонтики»")
-        self.assertEqual(sentenceCase("«шербурские зонтики»"),
-                         "«Шербурские зонтики»")
-        self.assertEqual(sentenceCase("«the Beatles»"), "«The Beatles»")
-
-        self.assertEqual(sentenceCase(""), "")
-        self.assertEqual(sentenceCase("1"), "1")
-        self.assertEqual(sentenceCase("123"), "123")
-        self.assertEqual(sentenceCase("1x"), "1X")
-        self.assertEqual(sentenceCase("x"), "X")
