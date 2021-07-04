@@ -7,3 +7,5 @@ from ._camel_case import CamelCase
 from ._other import *  # todo
 from ._regex_category_patterns import RegexCat, regexLu, regexLl
 from ._sentence_case import sentence_case, sentenceCase
+from ._minimize import minimize_spaces, minimizeSpaces
+from ._letters_dashes_spaces import keep_letters_dashes_spaces, keepLettersDashesSpaces

@@ -7,6 +7,8 @@ import unittest
 from pathlib import Path
 from typing import Union, Optional
 
+from rcd_str._minimize import minimize_spaces
+
 
 class LazyRegex:
 
@@ -45,8 +47,6 @@ def isASCII(s):
     return all(ord(c) < 128 for c in s)
 
 
-
-
 def capitalizeAfterNonword(txt: str) -> str:
     return re.sub('(<?\W)\w|^\w', lambda m: m.group(0).upper(), txt)
 
@@ -76,64 +76,9 @@ class TestCapita(unittest.TestCase):
 
 
 
-def keepLettersDashesSpaces(txt: str) -> str:
-    # оставляет только символы, допустимые в имени города: пробелы,
-    # дефисы, буквы
-
-    txt = txt.replace("_", " ")
-    txt = " ".join(re.findall('''[-\w ]+''', txt))  # остались альфанумерикс
-    txt = re.sub('''\d''', '', txt)  # удалили цифры
-
-    # любая смесь пробелов и дефисов превращается в одиночный дефис
-    # без пробелов рядом
-    txt = re.sub('''\s*-[\s-]*''', '-', txt)
-    txt = txt.strip('-')  # никаких дефисов по краям
-
-    return minimizeSpaces(txt)
 
 
-class TestKeepLetters(unittest.TestCase):
 
-    def test(self):
-        self.assertEqual(keepLettersDashesSpaces("Санкт-Петербург"),
-                         "Санкт-Петербург")
-
-        self.assertEqual(keepLettersDashesSpaces("-Узда-"), "Узда")
-        self.assertEqual(keepLettersDashesSpaces("- Узда -"), "Узда")
-
-        self.assertEqual(keepLettersDashesSpaces("Усть---Каменогорск"),
-                         "Усть-Каменогорск")
-        self.assertEqual(keepLettersDashesSpaces("Усть - --- Каменогорск"),
-                         "Усть-Каменогорск")
-
-        self.assertEqual(keepLettersDashesSpaces("Космонавтов, 6"),
-                         "Космонавтов")
-
-        self.assertEqual(keepLettersDashesSpaces(":) Нижний__Тагил!!!"),
-                         "Нижний Тагил")
-        self.assertEqual(keepLettersDashesSpaces("  Красная\t\tПоляна "),
-                         "Красная Поляна")
-        self.assertEqual(keepLettersDashesSpaces("Красная Поляна"),
-                         "Красная Поляна")
-        self.assertEqual(keepLettersDashesSpaces("Кривой   Рог"), "Кривой Рог")
-        self.assertEqual(keepLettersDashesSpaces("Кривой_Рог"), "Кривой Рог")
-
-
-# update(alphawords("number 1 and number 2 are numbers"))
-#	exit()
-
-
-# test_alphas()
-# exit()
-
-
-def minimizeSpaces(text, keepNewlines=False):
-    if keepNewlines:
-        lines = text.split("\n")
-        lines = [minimizeSpaces(line, keepNewlines=False) for line in lines]
-        return "\n".join(lines)
-    else:
-        return " ".join(text.split())
 
 
 def alphabet(startLetter, endLetter):
@@ -202,7 +147,4 @@ def wildFullMatch(text: str, wildcard: str) -> bool:
 
     return re.fullmatch(wildcard, text, re.MULTILINE | re.DOTALL) is not None
 
-
 # print(wildcard)
-
-
