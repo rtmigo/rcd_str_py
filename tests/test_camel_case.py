@@ -4,7 +4,7 @@
 
 import unittest
 
-from rcd_str._camel_case import CamelCase
+from rcd_str._camel_case import CamelCase, camelcase_concat_words
 
 
 class TestCamelCase(unittest.TestCase):
@@ -29,3 +29,13 @@ class TestCamelCase(unittest.TestCase):
         self.assertEqual(CamelCase.first(""), "")
 
         print("camel case tested")
+
+    def test_combine(self):
+        self.assertEqual(camelcase_concat_words(['ALPHA', 'BETA', 'GAMMA']),
+                         'alphaBetaGamma')
+        self.assertEqual(camelcase_concat_words(['ALPHA', 'BETA', 'GAMMA'],
+                                                upper=True),
+                         'AlphaBetaGamma')
+        self.assertEqual(camelcase_concat_words(['AlphaBeta', 'Gamma', 'theta']),
+                         'alphabetaGammaTheta')
+

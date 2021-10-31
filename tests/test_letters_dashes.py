@@ -26,5 +26,7 @@ class TestKeepLetters(unittest.TestCase):
                          "Красная Поляна")
         self.assertEqual(keep_letters_dashes_spaces("Красная Поляна"),
                          "Красная Поляна")
-        self.assertEqual(keep_letters_dashes_spaces("Кривой   Рог"), "Кривой Рог")
-        self.assertEqual(keep_letters_dashes_spaces("Кривой_Рог"), "Кривой Рог")
+        self.assertEqual(keep_letters_dashes_spaces("Кривой   Рог"),
+                         "Кривой Рог")
+        self.assertEqual(keep_letters_dashes_spaces("Кривой_Рог"),
+                         "Кривой Рог")
