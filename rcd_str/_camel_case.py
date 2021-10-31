@@ -3,7 +3,8 @@
 
 
 import re
-from typing import List
+
+from typing import List, Iterable
 
 
 class CamelCase:
@@ -52,3 +53,14 @@ class CamelCase:
             isFirst = False
 
         return result
+
+
+def camelcase_concat_words(words: Iterable[str], upper: bool = False) -> str:
+    new_words = []
+    for idx, w in enumerate(words):
+        if idx == 0:
+            w = w.title() if upper else w.lower()
+        else:
+            w = w.title()
+        new_words.append(w)
+    return ''.join(new_words)
