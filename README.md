@@ -7,6 +7,16 @@ be used by anyone.
 
 # Install
 
-``` bash
-$ pip3 install git+https://github.com/rtmigo/rcd_str_py#egg=rcd_str
+via command line
+
+```bash
+pip3 install git+https://github.com/rtmigo/rcd_str_py#egg=rcd_str
+```
+
+or include in `setup.py`
+
+```python3
+install_requires=[
+  "rcd_str@ git+https://github.com/rtmigo/rcd_str_py#egg=rcd_str"
+]
 ```
