@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from rcd_str import LazyRegex
+from rcd_str._lazy_regex import LazyRegex
 
 
 class TestLazy(unittest.TestCase):
