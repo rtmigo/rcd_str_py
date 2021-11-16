@@ -5,9 +5,8 @@ import re
 import unicodedata
 import unittest
 from pathlib import Path
-from typing import Union, Optional
 
-from rcd_str._minimize import minimize_spaces
+from typing import Union, Optional
 
 
 class LazyRegex:
@@ -15,22 +14,25 @@ class LazyRegex:
     def __init__(self, source: Union[str, Path], flags: int):
         if source is None:
             raise ValueError
-        self.source: Optional[Union[str, Path]] = source
+        self._source: Optional[Union[str, Path]] = source
         self._rx: Optional[re.Pattern] = None
         self._flags = flags
 
     @property
     def compiled(self) -> re.Pattern:
 
-        if isinstance(self.source, Path):
-            pattern = self.source.read_text()
+        if self._rx is not None:
+            return self._rx
+
+        if isinstance(self._source, Path):
+            pattern = self._source.read_text()
         else:
-            assert self.source is not None
-            pattern = self.source
+            assert self._source is not None
+            pattern = self._source
 
         if self._rx is None:
             self._rx = re.compile(pattern, self._flags)
-            self.source = None
+            self._source = None
 
         return self._rx
 
@@ -72,13 +74,6 @@ class TestCapita(unittest.TestCase):
 #		expr = r"[^\W\d_]+|\d+"
 
 #	return re.findall(expr, text)
-
-
-
-
-
-
-
 
 
 def alphabet(startLetter, endLetter):
