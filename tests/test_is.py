@@ -14,3 +14,6 @@ class TestIs(unittest.TestCase):
         self.assertTrue(is_blank('\n'))
         self.assertTrue(is_blank(' \n '))
         self.assertTrue(is_blank(' \n\r\n \n \r \t '))
+        with self.assertRaises(TypeError):
+            # noinspection PyTypeChecker
+            is_blank(None)
