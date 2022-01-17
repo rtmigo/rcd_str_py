@@ -3,38 +3,7 @@
 
 import re
 import unicodedata
-import unittest
-from pathlib import Path
-
-from typing import Union, Optional
-
-
-class LazyRegex:
-
-    def __init__(self, source: Union[str, Path], flags: int):
-        if source is None:
-            raise ValueError
-        self._source: Optional[Union[str, Path]] = source
-        self._rx: Optional[re.Pattern] = None
-        self._flags = flags
-
-    @property
-    def compiled(self) -> re.Pattern:
-
-        if self._rx is not None:
-            return self._rx
-
-        if isinstance(self._source, Path):
-            pattern = self._source.read_text()
-        else:
-            assert self._source is not None
-            pattern = self._source
-
-        if self._rx is None:
-            self._rx = re.compile(pattern, self._flags)
-            self._source = None
-
-        return self._rx
+import warnings
 
 
 def contains(word, alpha=False, upper=False, digit=False):
@@ -49,15 +18,10 @@ def isASCII(s):
     return all(ord(c) < 128 for c in s)
 
 
-def capitalizeAfterNonword(txt: str) -> str:
-    return re.sub('(<?\W)\w|^\w', lambda m: m.group(0).upper(), txt)
+def capitalize_word_sequences(txt: str) -> str:
+    return re.sub(r'(<?\W)\w|^\w', lambda m: m.group(0).upper(), txt)
 
 
-class TestCapita(unittest.TestCase):
-    def test(self):
-        self.assertEqual(capitalizeAfterNonword('усть-каменогорск'),
-                         'Усть-Каменогорск')
-        self.assertEqual(capitalizeAfterNonword('нижний тагил'), 'Нижний Тагил')
 
 
 # TestKeepAlnum().test()

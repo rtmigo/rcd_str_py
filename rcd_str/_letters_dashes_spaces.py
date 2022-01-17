@@ -1,5 +1,4 @@
 import re
-import warnings
 
 from rcd_str._minimize import minimize_spaces
 
@@ -20,6 +19,3 @@ def keep_letters_dashes_spaces(txt: str) -> str:
     return minimize_spaces(txt)
 
 
-def keepLettersDashesSpaces(txt: str) -> str:
-    warnings.warn("Use keep_letters_dashes_spaces", DeprecationWarning)
-    return keep_letters_dashes_spaces(txt)
