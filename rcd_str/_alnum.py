@@ -2,10 +2,6 @@ import re
 from typing import List
 
 
-def splitWaN(text):
-    return alphanumerics(text, underscore=False, separate_numbers=True)
-
-
 def alphanumerics(text,
                   underscore=False,
                   separate_numbers=False):
@@ -47,7 +43,11 @@ def keepalnum(txt: str) -> str:
     return pattern.sub('', txt)
 
 
-def simpleWaN(text):
-    """для приблизительного сравнения строк. Удаляет пунктуацию, минимизирует
-    пробелы, переводит строку в верхний регистр."""
-    return " ".join(splitWaN(text.upper()))
+def words_and_numbers(text: str) -> List[str]:
+    return alphanumerics(text, underscore=False, separate_numbers=True)
+
+
+def join_words_and_numbers_upper(text: str) -> str:
+    """Удаляет пунктуацию, минимизирует пробелы, переводит строку в верхний
+    регистр. Используется для "грубого сравнения" строк."""
+    return " ".join(words_and_numbers(text.upper()))
