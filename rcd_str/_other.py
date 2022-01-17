@@ -3,7 +3,7 @@
 
 import re
 import unicodedata
-import unittest
+import warnings
 
 
 def contains(word, alpha=False, upper=False, digit=False):
@@ -18,15 +18,10 @@ def isASCII(s):
     return all(ord(c) < 128 for c in s)
 
 
-def capitalizeAfterNonword(txt: str) -> str:
-    return re.sub('(<?\W)\w|^\w', lambda m: m.group(0).upper(), txt)
+def capitalize_word_sequences(txt: str) -> str:
+    return re.sub(r'(<?\W)\w|^\w', lambda m: m.group(0).upper(), txt)
 
 
-class TestCapita(unittest.TestCase):
-    def test(self):
-        self.assertEqual(capitalizeAfterNonword('усть-каменогорск'),
-                         'Усть-Каменогорск')
-        self.assertEqual(capitalizeAfterNonword('нижний тагил'), 'Нижний Тагил')
 
 
 # TestKeepAlnum().test()
