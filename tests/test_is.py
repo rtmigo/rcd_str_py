@@ -9,6 +9,7 @@ class TestIs(unittest.TestCase):
         self.assertFalse(is_blank(' hi '))
         self.assertFalse(is_blank('hi\n'))
         self.assertFalse(is_blank('\nhi\n'))
+        self.assertTrue(is_blank(''))
         self.assertTrue(is_blank(' '))
         self.assertTrue(is_blank('\n'))
         self.assertTrue(is_blank(' \n '))
