@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: (c) 2012-2022 Artёm IG <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
 
-
+from ._count import count_letters, count_cyrillic, count_digits
 from ._alnum import alphawords, alphanumerics, keepalnum, \
     words_and_numbers, join_words_and_numbers_upper
 from ._camel_case import CamelCase, camelcase_concat_words
