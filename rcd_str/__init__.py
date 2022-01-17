@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (c) 2012-2021 Artёm IG <github.com/rtmigo>
+# SPDX-FileCopyrightText: (c) 2012-2022 Artёm IG <github.com/rtmigo>
 # SPDX-License-Identifier: MIT
 
 
@@ -12,3 +12,4 @@ from ._letters_dashes_spaces import keep_letters_dashes_spaces
 from ._is import is_blank
 from ._deprecated import capitalizeAfterNonword, keepLettersDashesSpaces, \
     minimizeSpaces, sentenceCase
+
