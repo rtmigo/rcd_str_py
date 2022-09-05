@@ -36,7 +36,7 @@ def sentenceCase(s):
 # noinspection PyPep8Naming
 def splitWaN(text):
     # 2021-01
-    warnings.warn("Use split_to_words_and_numbers", DeprecationWarning,
+    warnings.warn("Use words_and_numbers", DeprecationWarning,
                   stacklevel=2)
     return words_and_numbers(text)
 
